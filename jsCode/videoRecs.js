@@ -12,5 +12,5 @@ function onYouTubeIframeAPIReady(){
             autoplay:0,
             controls:1,
         }
-    })
+    });
 };
