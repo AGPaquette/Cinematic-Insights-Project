@@ -8,12 +8,6 @@ var searchBtn = document.querySelector("#indexSearch")
 var filmParent = document.querySelector("#films")
 
 
-function searchFilm() { 
-    var userFilm = document.getElementById("filmName").value
-    window.location.href = "./htmlFiles/menu.html?film=" + userFilm;
-
-};
-
 function main() {
     
 };
@@ -47,10 +41,6 @@ function filmResults() {
 
 main()
 
-
-if (document.URL.includes("index.html")) {
-    searchBtn.addEventListener("click", searchFilm);
-};
 
 if (document.URL.includes("menu.html")) {
     var film = document.location.search.split("=")[1]
