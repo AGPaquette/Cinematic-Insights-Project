@@ -1,3 +1,5 @@
+//holds the videoId that will be grabbed from the youtube data api
+var idForVideo = "YAD0s9_kbU4"
 //allowes for youtube videos to be played on the website using the iframe api connected to the html
 let player
 
@@ -14,7 +16,7 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player(`player${i}`, {
         height: 200,
         width: 300,
-        videoId: "YAD0s9_kbU4",
+        videoId: idForVideo,
         playerVars: {
             playersinline:1,
             autoplay:0,
