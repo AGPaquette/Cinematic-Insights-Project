@@ -14,3 +14,24 @@ function onYouTubeIframeAPIReady(){
         }
     });
 };
+
+function filmResults() {
+    for (i = 0; i < 6; i++) {
+        console.log("hello")
+        var liElement = document.createElement("li");
+
+        var button = document.createElement("button")
+        button.textContent = "+"
+        liElement.appendChild(button)
+
+        var text = document.createElement("p")
+        text.textContent = "film summary"
+
+        var image = document.createElement("img")
+        image.src = "../IMG_0033.PNG"
+        liElement.appendChild(image)
+
+        liElement.appendChild(text)
+        filmParent.appendChild(liElement)
+    };
+};
