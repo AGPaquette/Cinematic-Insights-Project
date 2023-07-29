@@ -4,7 +4,7 @@ const youTubeKey = "AIzaSyCi65x5y483f_VCrY8AP-ZQHf-o5e-eXcA"
 var userSearchFilm = "none"
 const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key=${youTubeKey}q=${userSearchFilm}&type=video&part=snippet`
 var videoId = "none"
-var searchBtn = document.querySelector("#indexSearch")
+
 var filmParent = document.querySelector("#films")
 
 

@@ -1,7 +1,14 @@
+var searchBtn = document.querySelector("#indexSearch")
 
 function searchFilm() { 
+    console.log("film")
     var userFilm = document.getElementById("filmName").value
-    window.location.href = "./htmlFiles/menu.html?film=" + userFilm;
+    if (document.URL.includes("index.html")) {
+        window.location.href = "./htmlFiles/menu.html?film=" + userFilm;
+    }
+    else {
+        window.location.href = "./menu.html?film=" + userFilm;
+    };
 
 };
 
