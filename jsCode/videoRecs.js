@@ -38,4 +38,3 @@ function filmResults() {
     };
 };
 
-filmResults()
