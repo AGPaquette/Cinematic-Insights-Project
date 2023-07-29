@@ -1,8 +1,4 @@
 
-function addWatchList() {
-
-};
-
 function subtractWatchList() {
 
 };
@@ -10,3 +6,4 @@ function subtractWatchList() {
 function yourWatchList() {
 
 };
+

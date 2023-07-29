@@ -1,9 +1,14 @@
-
 //allowes for youtube videos to be played on the website using the iframe api connected to the html
 let player
 
+function addWatchList() {
+    console.log("added")
+    var titleID = $(this).parent().attr("id");
+    var name = $(this).siblings(".showOrFilm").val();
+    localStorage.setItem(titleID, name);
+};
+
 function onYouTubeIframeAPIReady() {
-    console.log("inside")
     //loops through the youtube iframe apio to allow for the videos to be added to each videocontainer
     for (i = 0; i < 6; i++) {   
     player = new YT.Player(`player${i}`, {
@@ -22,7 +27,6 @@ function onYouTubeIframeAPIReady() {
 function filmResults() {
     
     for (i = 0; i < 6; i++) {
-        console.log("hello")
         var videoContainer = document.createElement("section");
         videoContainer.setAttribute("id", `container-${i}`);
 
@@ -30,7 +34,8 @@ function filmResults() {
         video.setAttribute("id", `player${i}`)
         videoContainer.appendChild(video);
 
-        var title = document.createElement("h2");
+        var title = document.createElement("h3");
+        title.setAttribute("class", "showOrFilm")
         title.textContent = "Your Lie in April";
         videoContainer.appendChild(title);
 
@@ -39,6 +44,7 @@ function filmResults() {
         videoContainer.appendChild(text);
 
         var button = document.createElement("button");
+        button.addEventListener("click", addWatchList);
         button.textContent = "+";
         videoContainer.appendChild(button);
 
