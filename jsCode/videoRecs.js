@@ -2,8 +2,8 @@
 //allowes for youtube videos to be played on the website using the iframe api connected to the html
 let player
 
-function onYouTubeIframeAPIReady(){
-    player = new YT.Player("player", {
+function onYouTubeIframeAPIReady(x){
+    player = new YT.Player(`player${x}`, {
         height: 300,
         width: 600,
         videoId: "YAD0s9_kbU4",
@@ -18,20 +18,24 @@ function onYouTubeIframeAPIReady(){
 function filmResults() {
     for (i = 0; i < 6; i++) {
         console.log("hello")
-        var liElement = document.createElement("li");
+        var videoContainer = document.createElement("div").setAttribute("id", `player-container${i}`);
 
         var button = document.createElement("button")
         button.textContent = "+"
-        liElement.appendChild(button)
+        videoContainer.appendChild(button)
 
         var text = document.createElement("p")
         text.textContent = "film summary"
 
-        var image = document.createElement("img")
-        image.src = "../IMG_0033.PNG"
-        liElement.appendChild(image)
+        var video = document.createElement("div").setAttribute("id", `player${i}`)
+        videoContainer.appendChild(video)
 
-        liElement.appendChild(text)
-        filmParent.appendChild(liElement)
+        videoContainer.appendChild(text)
+        filmParent.appendChild(videoContainer)
+
+        onYouTubeIframeAPIReady(i)
+
     };
 };
+
+filmResults()
