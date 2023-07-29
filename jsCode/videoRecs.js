@@ -4,6 +4,7 @@ let player
 
 function onYouTubeIframeAPIReady() {
     console.log("inside")
+    //loops through the youtube iframe apio to allow for the videos to be added to each videocontainer
     for (i = 0; i < 6; i++) {   
     player = new YT.Player(`player${i}`, {
         height: 200,
@@ -25,6 +26,10 @@ function filmResults() {
         var videoContainer = document.createElement("section");
         videoContainer.setAttribute("id", `container-${i}`);
 
+        var video = document.createElement("div");
+        video.setAttribute("id", `player${i}`)
+        videoContainer.appendChild(video);
+
         var text = document.createElement("p");
         text.textContent = "film summary";
         videoContainer.appendChild(text);
@@ -32,10 +37,6 @@ function filmResults() {
         var button = document.createElement("button");
         button.textContent = "+";
         videoContainer.appendChild(button);
-
-        var video = document.createElement("div");
-        video.setAttribute("id", `player${i}`)
-        videoContainer.appendChild(video);
 
         filmParent.appendChild(videoContainer);
 
