@@ -30,6 +30,10 @@ function filmResults() {
         video.setAttribute("id", `player${i}`)
         videoContainer.appendChild(video);
 
+        var title = document.createElement("h2");
+        title.textContent = "Your Lie in April";
+        videoContainer.appendChild(title);
+
         var text = document.createElement("p");
         text.textContent = "film summary";
         videoContainer.appendChild(text);
