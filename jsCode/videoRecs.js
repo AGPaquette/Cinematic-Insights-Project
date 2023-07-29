@@ -4,7 +4,7 @@ let player
 function addWatchList() {
     console.log("added")
     var titleID = $(this).parent().attr("id");
-    var name = $(this).siblings(".showOrFilm").val();
+    var name = $(this).siblings(".showOrFilm").text();
     localStorage.setItem(titleID, name);
 };
 
