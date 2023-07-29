@@ -20,7 +20,6 @@ function backButton() {
 
 main()
 
-
 if (document.URL.includes("menu.html")) {
     var film = document.location.search.split("=")[1]
     console.log(film)
