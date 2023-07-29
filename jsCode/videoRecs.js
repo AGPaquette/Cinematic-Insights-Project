@@ -23,7 +23,7 @@ function filmResults() {
     for (i = 0; i < 6; i++) {
         console.log("hello")
         var videoContainer = document.createElement("section");
-        videoContainer.setAttribute("id", `container-{i}`);
+        videoContainer.setAttribute("id", `container-${i}`);
 
         var text = document.createElement("p");
         text.textContent = "film summary";
