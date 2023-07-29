@@ -5,6 +5,4 @@ function searchFilm() {
 
 };
 
-if (document.URL.includes("index.html")) {
-    searchBtn.addEventListener("click", searchFilm);
-};
+searchBtn.addEventListener("click", searchFilm);
