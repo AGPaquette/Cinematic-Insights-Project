@@ -1,5 +1,42 @@
+var userFilm = localStorage.getItem("searched-film");
+
+const youTubeKey = "AIzaSyCi65x5y483f_VCrY8AP-ZQHf-o5e-eXcA"
+const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key=${youTubeKey}q=${userFilm}&type=video&part=snippet`
+
+const openAIKey = ''
+const openAiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+
+const apiHeaders = {
+    'Content-Type': 'aplication/json',
+    'Authorization': `Bearer ${openAIKey}`
+};
+
+const AiPrompt = `I enjoy watching ${userFilm}, can recommend 10 films or shows that are like ${userFiml}`;
+
+const data = {
+    prompt: AiPrompt,
+    max_tokens: 1000
+};
+
+const options = {
+    method: "POST",
+    headers: apiheaders,
+    body: JSON.stringify(data)
+}
+
+function showRecs() {
+    fetch (openAiUrl, options)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        var recs = data
+        return recs
+    })
+};
+
 //holds the videoId that will be grabbed from the youtube data api
-var idForVideo = "YAD0s9_kbU4"
+var idForVideo = "YAD0s9_kbU4";
 //allowes for youtube videos to be played on the website using the iframe api connected to the html
 let player
 
