@@ -7,26 +7,29 @@
     <title>CI Results</title>
 </head>
 <body class = "font-serif mt-12 mr-48 ml-48 bg-center bg-repeat " style = "background-image: url(/Users/alexr./Desktop/bootcamp/Project1/Cinematic-Insights-Project/img/movies.jpg)">
-    <div class = "border-solid bg-black border-8 border-double border-amber-400 shadow-inner shadow-gray-200">
+    <div class = "border-solid border-8 border-double border-amber-400 shadow-inner shadow-gray-200 bg-center bg-repeat " style = "background-image: url(/Users/alexr./Desktop/bootcamp/Project1/Cinematic-Insights-Project/img/artdeco2.jpeg)" >
 
-      <div class = "bg-black flex flex-col items-center justify-center">
-         <h1 class = "text-8xl text-center text-amber-400 py-3.5 underline underline-offset-4 decoration-double decoration-4" id="title">Cinematic Insights</h1>
-        <div class="flex my-2">
-            <input class="my-2 w-4/5 h-10 py-3.5 my-2 text-center " id="filmName" type="text" placeholder="Search film or show">
-            <button class="my-2 mx-2 text-amber-400 text-center underline bg-neutral-400 w-64 h-10 my-2 border-8 border-amber-400 border-double bg-transparent" id="indexSearch" type="submit">Search</button>
+        <div class = "flex flex-col items-center justify-center" >
+
+            <h1 class = " font-bold text-8xl text-center text-amber-400 py-3.5 underline underline-offset-4 decoration-double decoration-4" id="title">Cinematic Insights</h1>
+
+            <div class="flex my-2">
+                 <input class="my-2 w-96 h-10 py-3.5 my-2 text-center " id="filmName" type="text" placeholder="Search film or show">
+                 <button class="my-2 mx-2 text-amber-400 text-center underline  w-64 h-10 my-2 border-8 border-amber-400 border-double bg-black" id="indexSearch" type="submit">Search</button>
+            </div>
+       
         </div>
+
         <div>
-            <button id="watchListBtn">Watcuhlist</button>
-        </div>
-        </div>
 
-        <div class = "bg-white flex">
-
-            <section id="films">
-
-          </section>
+            <section class = "w-full flex flex-col space-y-2" id="films"> </section> <!--section to hold results-->
 
         </div>
+
+        <div class="flex items-center justify-center my-2">
+            <button class="my-2 mx-2 text-amber-400 text-center bg-black underline w-96 h-10 my-2 border-8 border-amber-400 border-double " id="watchListBtn">Watchlist</button>
+        </div>
+
     </div>
 
 </body>
