@@ -3,27 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../public/styles.css">
+    <title>iCinematic</title>
 </head>
-<body>
-    <div>
-        <h1 id="title">Cinematic Insights</h1>
-        <input type="text" placeholder="Search film or show">
-        <button type="submit">Search</button>
-    </div>
-    <div>
-        <section id="films">
-            <li>hello<button>+</button></li>
-            <li>hello<button>+</button></li>
-            <li>hello<button>+</button></li>
-            <div id="player-container">
-                <div id="player"></div>
-            </div>
-        </section>
+
+<body class = "font-serif mt-12 mr-48 ml-48 bg-center bg-repeat " style = "background-image: url(/Users/alexr./Desktop/bootcamp/Project1/Cinematic-Insights-Project/img/movies.jpg)">
+    <div class = "border-solid bg-black border-8 border-double border-amber-400 shadow-inner shadow-gray-200">
+
+      <div class = "bg-black flex flex-col items-center justify-center">
+         <h1 class = "text-8xl text-center text-amber-400 py-3.5 underline underline-offset-4 decoration-double decoration-4" id="title">Cinematic Insights</h1>
+        <div class="flex my-2">
+            <input class="my-2 w-4/5 h-10 py-3.5 my-2 text-center " id="filmName" type="text" placeholder="Search film or show">
+            <button class="my-2 mx-2 text-amber-400 text-center underline bg-neutral-400 w-64 h-10 my-2 border-8 border-amber-400 border-double bg-transparent" id="indexSearch" type="submit">Search</button>
+        </div>
+        </div>
+
+        <div class = "bg-white flex">
+
+            <section id="films">
+
+          </section>
+
+        </div>
+
     </div>
 </body>
 <!-- the youtube src allows for the use of the iframe api-->
 <script src="http://www.youtube.com/iframe_api"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="../jsCode/filmSearch.js"></script>
 <script src="../jsCode/videoRecs.js"></script>
 <script src="../jsCode/script.js"></script>
 </html>

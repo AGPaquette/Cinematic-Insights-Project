@@ -1,17 +1,39 @@
 
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/styles.css">
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h1 id="title">Cinematic Insights</h1>
-        <input id="filmName" type="text" placeholder="Search film or show">
-        <button id="indexSearch" type="submit">Search</button>
-    </div>
+    <main>
+        <div class="flex h-screen">
+            <div class="flex-grow flex-shrink border-r-8 border-solid border-amber-400 bg-scroll bg-center bg-black bg-repeat-y sepia shadow-2xl" style = "background-image: url(img/movies.jpg)">
+                <h1>hello</h1>
+            </div>
+
+            <div class="relative w-1/2 flex-shrink bg-red-500 flex flex-col items-center justify-center">
+                <video autoplay loop muted class="absolute z-negative w-full h-full object-cover">
+                  <source src="img/vecteezy_tv-noise-and-glitch-effects-noise-effects-on-black_15387858_274.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <div class="relative bg-opacity-50 w-full h-full flex flex-col items-center justify-center font-serif">
+                    <!--title-->
+                  <h1 class = "text-8xl text-center text-amber-400 py-3.5 underline underline-offset-4 decoration-double decoration-4" id="title">CINEMATIC <br> Insights</h1>
+
+                  <input class = "w-4/5 h-10 py-3.5 my-2 text-center " id="filmName" type="text" placeholder="Search film or show">
+                  <button class = "text-amber-400 text-center underline bg-neutral-400 w-64 h-14 my-2 border-8 border-amber-400 border-double bg-transparent" id="indexSearch" type="submit">Search</button>
+
+                  <p class = "text-center italic text-stone-400 pr-2.5"> Welcome to Cinematics Insights<br> Please enter favorite movie titles <br> to display movie recommendations.</p>
+                  <p class = " mt-44 text-center italic text-white pr-2.5 ">Cinematic Insights © 2023</p>
+                </div>
+              </div>
+        </div>
+     
+       
+    </main>
 </body>
 <script src="./jsCode/script.js"></script>
 <script src="./jsCode/filmSearch.js"></script>
