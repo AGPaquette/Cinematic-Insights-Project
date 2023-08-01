@@ -31,6 +31,7 @@ function showRecs() {
     })
     .then(function (data) {
         var recs = data
+        console.log(recs)
         return recs
     })
 };
