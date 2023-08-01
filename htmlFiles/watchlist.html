@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../public/styles.css">
+    <title>iCinematic</title>
 </head>
-<body>
-    <div>
-        <button>Back</button>
-        <h1>Watcuhlist</h1>
-    </div>
-    <div>
-        <ul>
+<body class= "h-screen font-serif mt-12 mr-48 ml-48 bg-center bg-repeat " style = "background-image: url(/Users/alexr./Desktop/bootcamp/Project1/Cinematic-Insights-Project/img/modernMovie2.jpeg)">
+    <div class = "bg-black border-8 border-double border-amber-400 shadow-inner shadow-gray-200" >
+        <h1 class = "bg-black text-8xl text-center text-amber-400 py-3.5 underline underline-offset-4 decoration-double decoration-4" id="title">Cinematic WatchList</h1>
+        <div class = "flex flex-col items-center">
+            <button class = "text-amber-400 text-center underline bg-neutral-400 w-64 h-14 my-2 border-8 border-amber-400 border-double bg-transparent">Back</button>
+            <h1>Watcuhlist</h1>
+        </div>
+        <div class= "h-screen bg-black">
+        <ul id="WatchList">
             <li>hello<button>-</button></li>
             <li>hello<button>-</button></li>
             <li>hello<button>-</button></li>
         </ul>
+        </div>
     </div>
 </body>
 <script src="../jsCode/watchlistFunctions.js"></script>
