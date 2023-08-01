@@ -27,6 +27,7 @@ function onYouTubeIframeAPIReady() {
     };
 
 function filmResults() {
+    var filmParent = document.querySelector("#films")
     
     for (i = 0; i < 6; i++) {
         var videoContainer = document.createElement("section");
