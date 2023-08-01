@@ -65,14 +65,53 @@ function onYouTubeIframeAPIReady() {
     };
 
 function filmResults() {
-    var filmParent = document.querySelector("#films")
-    
+    var filmParent = document.querySelector("#films");
+
+
     for (i = 0; i < 6; i++) {
+        var filmParent = document.querySelector("#films");
+        
         var videoContainer = document.createElement("section");
         videoContainer.setAttribute("id", `container-${i}`);
+        videoContainer.setAttribute("class", "flex flex-col space-y-4 mx-3.5 bg-neutral-900 pb-6 pr-4 pl-4 border-solid border-2 border-amber-400");
+        
+        var title = document.createElement("h3");
+        title.setAttribute("class", "showOrFilm text-amber-400 text-xl text-start pt-4");
+        title.textContent = "Your Lie in April";
+        videoContainer.appendChild(title);
+        
+        var contentContainer = document.createElement("div");
+        contentContainer.setAttribute("class", "flex space-x-4");
+        
+        var video = document.createElement("div");
+        video.setAttribute("id", `player${i}`);
+        video.setAttribute("class", "flex-grow");
+        contentContainer.appendChild(video);
+        
+        var text = document.createElement("p");
+        text.setAttribute("class", "flex-grow text-start italic text-neutral-400 pr-2.5");
+        text.textContent = "film summary";
+        contentContainer.appendChild(text);
+        
+        var button = document.createElement("button");
+        button.addEventListener("click", addWatchList);
+        button.setAttribute("class", "my-2 mx-2 text-amber-400 text-center w-14 h-36 my-2 border-8 border-amber-400 border-double bg-black")
+        button.textContent = "+";
+        contentContainer.appendChild(button);
+        
+        videoContainer.appendChild(contentContainer);
+        filmParent.appendChild(videoContainer);
+    };
+};
+
+/*
+    for (i = 0; i < 6; i++) {
+        var videoContainer = document.createElement("section"); 
+        videoContainer.setAttribute("id", `container-${i}`);
+        
 
         var video = document.createElement("div");
-        video.setAttribute("id", `player${i}`)
+        video.setAttribute("id", `player${i}`);
         videoContainer.appendChild(video);
 
         var title = document.createElement("h3");
@@ -93,5 +132,46 @@ function filmResults() {
 
         };
     };
+*/
+
+/* 
+
+<section> ---> HTML Page 
+
+    <section class = "grid grid-rows-6 grid-flow-col gap-4 "> 
+
+        <div class = "order-2 row-span-4 col-span-3">Video<div> 
+        <h3 class = "order-1 col-pan-6 ">Title</h3>
+        <p class = "order-3 row-span-5 col-span-2">summary</>
+        <button class = "order-4 col-span-3"> + </buttom>
+
+    </section>
+
+    <section>
+
+        <div>Video<div>
+        <h3>Title</h3>
+        <p>summary</>
+        <button> + </buttom>
+
+    </section>
+
+    <section>
+
+        <div>Video<div>
+        <h3>Title</h3>
+        <p>summary</>
+        <button> + </buttom>
+
+    </section>
+
+    ........
+
+</section> 
+
+
+.setAttribute("class", "");
+
+*/
 
 
