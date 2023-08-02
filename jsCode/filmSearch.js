@@ -18,10 +18,17 @@ function checkforValue () {
         filmValue.setAttribute("placeholder", "PLEASE ENTER A FILM OR SHOW")
     }
     else {
-        localStorage.setItem("searched-film", filmValue.value)
-        openAiRecommendations()
+        if (document.URL.includes("index.html")) {
+            localStorage.setItem("searched-film", filmValue.value)
+            window.location.href = "./htmlFiles/menu.html"
+        }
+        else{
+            localStorage.setItem("searched-film", filmValue.value)
+            openAiRecommendations()
+        };
     };
 };
+
 
 searchBtn.addEventListener("click", checkforValue);
 
