@@ -1,7 +1,7 @@
 # Cinematic-Insights-Project
 
 # Description
-Allows the user to input a show or movie and be given recommendations based off of that show or movie. API keys are not included in the files since they would be disabled whenever they were pushed to Git Hub.
+Allows the user to input a show or movie and be given recommendations based on that show or movie. API keys are not included in the files since they would be disabled whenever they were pushed to Git Hub. Repo will need to be downloaded and your own api key will have to be used for full functionality.
 
 # Tech used
 -Tailwind
