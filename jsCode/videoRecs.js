@@ -1,7 +1,15 @@
 var userFilm = localStorage.getItem("searched-film");
 
-const youTubeKey = "AIzaSyCi65x5y483f_VCrY8AP-ZQHf-o5e-eXcA"
-const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key=${youTubeKey}q=${userFilm}&type=video&part=snippet`
+const youTubeKey = ""
+const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key=${youTubeKey}q=${userFilm}`
+
+const youtubeParams = {
+    key: youTubeKey,
+    part: "snippet",
+    type:"video",
+    q: userFilm
+
+}
 
 const openAIKey = ''
 const openAiUrl = 'https://api.openai.com/v1/completions';
@@ -25,17 +33,34 @@ const options = {
     body: JSON.stringify(AiData)
 }
 
-function showRecs() {
+function youtubeData() {
+    fetch (youTubeUrl, youtubeParams)
+    .then(function (response){
+        return response.json()
+    })
+    .then(function (data) {
+        var videoData = data
+        console.log(videoData)
+        return videoData
+    });
+};
+
+
+function openAiRecommendations() {
     fetch (openAiUrl, options)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        var recs = data.choices
+        var recs = data.choices[0].text
         console.log(recs)
+        console.log(recs.split("\n"))
         return recs
-    })
+    });
 };
+
+console.log(userFilm)
+openAiRecommendations()
 
 //holds the videoId that will be grabbed from the youtube data api
 var idForVideo = "YAD0s9_kbU4";
@@ -104,4 +129,3 @@ function filmResults() {
         filmParent.appendChild(videoContainer);
     };
 };
-
