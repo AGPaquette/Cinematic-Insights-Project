@@ -3,25 +3,26 @@ var userFilm = localStorage.getItem("searched-film");
 const youTubeKey = "AIzaSyCi65x5y483f_VCrY8AP-ZQHf-o5e-eXcA"
 const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key=${youTubeKey}q=${userFilm}&type=video&part=snippet`
 
-const openAIKey = ''
-const openAiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+const openAIKey = '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'
+const openAiUrl = 'https://api.openai.com/v1/completions';
 
 const apiHeaders = {
-    'Content-Type': 'aplication/json',
+    'Content-Type': 'application/json',
     'Authorization': `Bearer ${openAIKey}`
 };
 
-const AiPrompt = `I enjoy watching ${userFilm}, can recommend 10 films or shows that are like ${userFiml}`;
+const AiPrompt = `I enjoy watching ${userFilm}, can recommend 10 films or shows that are like ${userFilm}, with a short summary.`;
 
-const data = {
+const AiData = {
+    model: 'text-davinci-003', 
     prompt: AiPrompt,
-    max_tokens: 1000
+    max_tokens: 1000,
 };
 
 const options = {
     method: "POST",
-    headers: apiheaders,
-    body: JSON.stringify(data)
+    headers: apiHeaders,
+    body: JSON.stringify(AiData)
 }
 
 function showRecs() {
@@ -30,7 +31,7 @@ function showRecs() {
         return response.json();
     })
     .then(function (data) {
-        var recs = data
+        var recs = data.choices
         console.log(recs)
         return recs
     })
@@ -103,75 +104,4 @@ function filmResults() {
         filmParent.appendChild(videoContainer);
     };
 };
-
-/*
-    for (i = 0; i < 6; i++) {
-        var videoContainer = document.createElement("section"); 
-        videoContainer.setAttribute("id", `container-${i}`);
-        
-
-        var video = document.createElement("div");
-        video.setAttribute("id", `player${i}`);
-        videoContainer.appendChild(video);
-
-        var title = document.createElement("h3");
-        title.setAttribute("class", "showOrFilm")
-        title.textContent = "Your Lie in April";
-        videoContainer.appendChild(title);
-
-        var text = document.createElement("p");
-        text.textContent = "film summary";
-        videoContainer.appendChild(text);
-
-        var button = document.createElement("button");
-        button.addEventListener("click", addWatchList);
-        button.textContent = "+";
-        videoContainer.appendChild(button);
-
-        filmParent.appendChild(videoContainer);
-
-        };
-    };
-*/
-
-/* 
-
-<section> ---> HTML Page 
-
-    <section class = "grid grid-rows-6 grid-flow-col gap-4 "> 
-
-        <div class = "order-2 row-span-4 col-span-3">Video<div> 
-        <h3 class = "order-1 col-pan-6 ">Title</h3>
-        <p class = "order-3 row-span-5 col-span-2">summary</>
-        <button class = "order-4 col-span-3"> + </buttom>
-
-    </section>
-
-    <section>
-
-        <div>Video<div>
-        <h3>Title</h3>
-        <p>summary</>
-        <button> + </buttom>
-
-    </section>
-
-    <section>
-
-        <div>Video<div>
-        <h3>Title</h3>
-        <p>summary</>
-        <button> + </buttom>
-
-    </section>
-
-    ........
-
-</section> 
-
-
-.setAttribute("class", "");
-
-*/
-
 

@@ -1,9 +1,4 @@
 
-function main() {
-    
-};
-
-
 function watchList() {
     window.location.href = "./watchlist.html"
 };
