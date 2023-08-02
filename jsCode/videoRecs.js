@@ -11,7 +11,7 @@ const youtubeParams = {
 
 }
 
-const openAIKey = ''
+const openAIKey = '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'
 const openAiUrl = 'https://api.openai.com/v1/completions';
 
 const apiHeaders = {
@@ -52,15 +52,22 @@ function openAiRecommendations() {
         return response.json();
     })
     .then(function (data) {
-        var recs = data.choices[0].text
-        console.log(recs)
-        console.log(recs.split("\n"))
-        return recs
+        var recs = data.choices[0].text;
+
+        console.log(recs);
+
+        list = recs.split("\n");
+        var filteredList = list.filter(function(element) {
+            return element !== "";
+        });
+        console.log(filteredList)
+        filmResults(filteredList)
+
+        return recs;
     });
 };
 
 console.log(userFilm)
-openAiRecommendations()
 
 //holds the videoId that will be grabbed from the youtube data api
 var idForVideo = "YAD0s9_kbU4";
@@ -90,11 +97,11 @@ function onYouTubeIframeAPIReady() {
     };
     };
 
-function filmResults() {
+function filmResults(array) {
     var filmParent = document.querySelector("#films");
 
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < array.length; i++) {
         var filmParent = document.querySelector("#films");
         
         var videoContainer = document.createElement("section");
@@ -116,7 +123,7 @@ function filmResults() {
         
         var text = document.createElement("p");
         text.setAttribute("class", "flex-grow text-start italic text-neutral-400 pr-2.5");
-        text.textContent = "film summary";
+        text.textContent = array[i];
         contentContainer.appendChild(text);
         
         var button = document.createElement("button");
