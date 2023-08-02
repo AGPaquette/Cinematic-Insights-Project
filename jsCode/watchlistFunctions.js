@@ -15,14 +15,15 @@ function yourWatchList() {
         console.log("entered loop")
         var LiContainer = document.createElement("li");
         LiContainer.setAttribute("id", `listNum${i}`)
+        LiContainer.setAttribute("class", `flex justify-between items-center m-2 bg-neutral-900 border-solid border-2 border-amber-400`)
 
         var nameOfFilm = document.createElement("p");
-        nameOfFilm.setAttribute("class", 'filmName');
+        nameOfFilm.setAttribute("class", 'filmName w-10/12 flex justify-center items-center h-20 text-center  text-7xl text-yellow-300');
         nameOfFilm.textContent = "Love is War";
         LiContainer.appendChild(nameOfFilm)
 
         var subBtn = document.createElement("button");
-        subBtn.setAttribute("class", "removeBtn");
+        subBtn.setAttribute("class", "removeBtn justify-self-end my-2 mx-2 text-amber-400 text-center w-14 h-20 my-2 border-8 border-amber-400 border-double bg-black");
         LiContainer.appendChild(subBtn);
 
         UlContainer.appendChild(LiContainer)
@@ -46,3 +47,9 @@ if (document.URL.includes("menu.html")) {
 if (document.URL.includes("watchlist.html")) {
     backBtn.addEventListener("click", backToMenu);
 };
+
+/*
+
+
+
+*/
