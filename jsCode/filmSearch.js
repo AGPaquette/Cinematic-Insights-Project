@@ -1,8 +1,9 @@
 var searchBtn = document.querySelector("#indexSearch")
+var filmValue = document.getElementById("filmName")
 
 function searchFilm() { 
     console.log("film")
-    var userFilm = document.getElementById("filmName").value
+    var userFilm = filmValue.value
     if (document.URL.includes("index.html")) {
         window.location.href = "./htmlFiles/menu.html?film=" + userFilm;
     }
@@ -12,4 +13,15 @@ function searchFilm() {
 
 };
 
-searchBtn.addEventListener("click", searchFilm);
+function checkforValue () {
+    if (filmValue.value == "") {
+        filmValue.setAttribute("placeholder", "PLEASE ENTER A FILM OR SHOW")
+    }
+    else {
+        localStorage.setItem("searched-film", filmValue.value)
+        openAiRecommendations()
+    };
+};
+
+searchBtn.addEventListener("click", checkforValue);
+
