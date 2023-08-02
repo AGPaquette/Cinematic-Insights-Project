@@ -8,12 +8,8 @@ function backButton() {
 
 };
 
-
-
-
 if (document.URL.includes("menu.html")) {
     var film = document.location.search.split("=")[1];
     localStorage.setItem("searched-film", film);
-    console.log(film)
     filmResults();
 };
