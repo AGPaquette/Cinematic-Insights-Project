@@ -1,3 +1,4 @@
+var backBtn = document.querySelector("#backBtn")
 var watchListBtn = document.querySelector("#watchListBtn")
 var watchListArray = [];
 var stringArray = JSON.stringify(watchListArray);
@@ -33,6 +34,15 @@ function watchListPage() {
     window.location.href = "./watchlist.html";
 };
 
+
+function backToMenu() {
+    window.location.href = "./menu.html";
+};
+
 if (document.URL.includes("menu.html")) {
     watchListBtn.addEventListener("click", watchListPage);
+};
+
+if (document.URL.includes("watchlist.html")) {
+    backBtn.addEventListener("click", backToMenu);
 };
