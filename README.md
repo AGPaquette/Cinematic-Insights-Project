@@ -10,6 +10,7 @@ Allows the user to input a show or movie and be given recommendations based on t
 -youtube iFrame api
 -html
 -javascript
+-node
 
 # URL
 https://agpaquette.github.io/Cinematic-Insights-Project/
