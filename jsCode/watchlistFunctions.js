@@ -40,10 +40,6 @@ function backToMenu() {
     window.location.href = "./menu.html";
 };
 
-if (document.URL.includes("watchlist.html")) {
-    backBtn.addEventListener("click", backToMenu);
-};
-
 /*
 
 
