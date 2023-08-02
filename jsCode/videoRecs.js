@@ -1,12 +1,11 @@
-var vidName = "Your Lie in April"
+var vidName = null;
 
-const youTubeKey = ""
-const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key${youTubeKey}&q=${vidName}&type=video&part=snippet`
+const youTubeKey = "";
+const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key=${youTubeKey}&q=${vidName}&type=video&part=snippet`;
 
 var userFilm = localStorage.getItem("searched-film")
-console.log(userFilm)
 
-const openAIKey = ''
+const openAIKey = '';
 const openAiUrl = 'https://api.openai.com/v1/completions';
 
 const apiHeaders = {
@@ -14,7 +13,7 @@ const apiHeaders = {
     'Authorization': `Bearer ${openAIKey}`
 };
 
-const AiPrompt = `I enjoy watching ${userFilm}, can recommend 10 films or shows that are like ${userFilm}, with a short summary.`;
+const AiPrompt = `I enjoy watching ${userFilm}, can recommend 10 films or shows that are like ${userFilm}, with a short summary. Make sure the recommended show or film is not in the data. Put a ":" after the title and before the summary all the time. Example 1. Title : summary of film`;
 
 const AiData = {
     model: 'text-davinci-003', 
@@ -26,23 +25,27 @@ const options = {
     method: "POST",
     headers: apiHeaders,
     body: JSON.stringify(AiData)
-}
+};
 
-function youtubeData() {
-    fetch (youTubeUrl)
-    .then(function (response){
-        return response.json()
-    })
-    .then(function (data) {
-        var videoData = data
-        console.log(videoData)
-        return videoData
-    });
+function youtubeData(titelArrays) {
+    for (i = 0; i < titelArrays.length; i ++){
+        vidName = titelArrays[i]
+        fetch (youTubeUrl)
+        .then(function (response){
+            return response.json()
+        })
+        .then(function (data) {
+            var videoData = data
+            console.log(videoData.items[0].id.videoId)
+            var Id = data.items[0].id.videoId
+            localStorage.setItem(`VideoId-${[i]}`, Id)
+            return videoData
+        });
+    }
 };
 
 
 function openAiRecommendations() {
-    console.log("entered function")
 
     fetch (openAiUrl, options)
     .then(function (response) {
@@ -53,12 +56,22 @@ function openAiRecommendations() {
 
         console.log(recs);
 
-        list = recs.split("\n");
+        var list = recs.split("\n");
+
         var filteredList = list.filter(function(element) {
             return element !== "" && element !== ' ';
         });
-        console.log(filteredList)
 
+        extractedTitles = filteredList.map(item => {
+            const match = item.match(/\. (.*?): (.*)/);
+            return match ? match[1] : null;
+          });
+
+        for (i = 0; i < extractedTitles.length; i++) {
+            localStorage.setItem(`HeaderTitle-${[i]}`, extractedTitles[i])
+        };
+
+        youtubeData(extractedTitles)
         filmResults(filteredList)
         onYouTubeIframeAPIReady()
 
@@ -66,8 +79,6 @@ function openAiRecommendations() {
     });
 };
 
-//holds the videoId that will be grabbed from the youtube data api
-var idForVideo = "YAD0s9_kbU4";
 //allowes for youtube videos to be played on the website using the iframe api connected to the html
 let player
 
@@ -84,7 +95,7 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player(`player${i}`, {
         height: 200,
         width: 300,
-        videoId: idForVideo,
+        videoId: localStorage.getItem(`VideoId-${[i]}`),
         playerVars: {
             playersinline:1,
             autoplay:0,
@@ -108,7 +119,7 @@ function filmResults(array) {
         
         var title = document.createElement("h3");
         title.setAttribute("class", "showOrFilm text-amber-400 text-xl text-start pt-4");
-        title.textContent = "Your Lie in April";
+        title.textContent = localStorage.getItem(`HeaderTitle-${[i]}`);
         videoContainer.appendChild(title);
         
         var contentContainer = document.createElement("div");
@@ -135,4 +146,6 @@ function filmResults(array) {
     };
 };
 
-youtubeData()
+if (document.URL.includes("menu.html")) {
+    openAiRecommendations()
+};
