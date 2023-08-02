@@ -1,9 +1,9 @@
 
-function watchList() {
-    window.location.href = "./watchlist.html"
-};
+//function watchList() {
+ //   window.location.href = "./watchlist.html"
+//};
 
-function backButton() {
-    window.location.href = "./menu.html"
+//function backButton() {
+//    window.location.href = "./menu.html"
 
-};
+//};
