@@ -1,17 +1,12 @@
-var userFilm = localStorage.getItem("searched-film");
+var vidName = "Your Lie in April"
 
 const youTubeKey = ""
-const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key=${youTubeKey}q=${userFilm}`
+const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key${youTubeKey}&q=${vidName}&type=video&part=snippet`
 
-const youtubeParams = {
-    key: youTubeKey,
-    part: "snippet",
-    type:"video",
-    q: userFilm
+var userFilm = localStorage.getItem("searched-film")
+console.log(userFilm)
 
-}
-
-const openAIKey = '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'
+const openAIKey = ''
 const openAiUrl = 'https://api.openai.com/v1/completions';
 
 const apiHeaders = {
@@ -34,7 +29,7 @@ const options = {
 }
 
 function youtubeData() {
-    fetch (youTubeUrl, youtubeParams)
+    fetch (youTubeUrl)
     .then(function (response){
         return response.json()
     })
@@ -47,6 +42,8 @@ function youtubeData() {
 
 
 function openAiRecommendations() {
+    console.log("entered function")
+
     fetch (openAiUrl, options)
     .then(function (response) {
         return response.json();
@@ -58,16 +55,16 @@ function openAiRecommendations() {
 
         list = recs.split("\n");
         var filteredList = list.filter(function(element) {
-            return element !== "";
+            return element !== "" && element !== ' ';
         });
         console.log(filteredList)
+
         filmResults(filteredList)
+        onYouTubeIframeAPIReady()
 
         return recs;
     });
 };
-
-console.log(userFilm)
 
 //holds the videoId that will be grabbed from the youtube data api
 var idForVideo = "YAD0s9_kbU4";
@@ -83,7 +80,7 @@ function addWatchList() {
 
 function onYouTubeIframeAPIReady() {
     //loops through the youtube iframe apio to allow for the videos to be added to each videocontainer
-    for (i = 0; i < 6; i++) {   
+    for (i = 0; i < 10; i++) {   
     player = new YT.Player(`player${i}`, {
         height: 200,
         width: 300,
@@ -100,6 +97,7 @@ function onYouTubeIframeAPIReady() {
 function filmResults(array) {
     var filmParent = document.querySelector("#films");
 
+    filmParent.innerHTML = ""
 
     for (i = 0; i < array.length; i++) {
         var filmParent = document.querySelector("#films");
@@ -126,13 +124,15 @@ function filmResults(array) {
         text.textContent = array[i];
         contentContainer.appendChild(text);
         
-        var button = document.createElement("button");
-        button.addEventListener("click", addWatchList);
-        button.setAttribute("class", "my-2 mx-2 text-amber-400 text-center w-14 h-36 my-2 border-8 border-amber-400 border-double bg-black")
-        button.textContent = "+";
-        contentContainer.appendChild(button);
+        //var button = document.createElement("button");
+        //button.addEventListener("click", addWatchList);
+        //button.setAttribute("class", "my-2 mx-2 text-amber-400 text-center w-14 h-36 my-2 border-8 border-amber-400 border-double bg-black")
+        //button.textContent = "+";
+        //contentContainer.appendChild(button);
         
         videoContainer.appendChild(contentContainer);
         filmParent.appendChild(videoContainer);
     };
 };
+
+youtubeData()
