@@ -35,11 +35,9 @@ function youtubeData(titelArrays) {
             return response.json()
         })
         .then(function (data) {
-            var videoData = data
-            console.log(videoData.items[0].id.videoId)
             var Id = data.items[0].id.videoId
             localStorage.setItem(`VideoId-${[i]}`, Id)
-            return videoData
+            return data
         });
     }
 };
@@ -53,8 +51,6 @@ function openAiRecommendations() {
     })
     .then(function (data) {
         var recs = data.choices[0].text;
-
-        console.log(recs);
 
         var list = recs.split("\n");
 
@@ -81,13 +77,6 @@ function openAiRecommendations() {
 
 //allowes for youtube videos to be played on the website using the iframe api connected to the html
 let player
-
-function addWatchList() {
-    console.log("added")
-    var titleID = $(this).parent().attr("id");
-    var name = $(this).siblings(".showOrFilm").text();
-    localStorage.setItem(titleID, name);
-};
 
 function onYouTubeIframeAPIReady() {
     //loops through the youtube iframe apio to allow for the videos to be added to each videocontainer
