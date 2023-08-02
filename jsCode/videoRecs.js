@@ -1,8 +1,10 @@
+//was made null to not create an error
 var vidName = null;
 
 const youTubeKey = "";
 const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key=${youTubeKey}&q=${vidName}&type=video&part=snippet`;
 
+//used to get store the value of the searched film
 var userFilm = localStorage.getItem("searched-film")
 
 const openAIKey = '';
@@ -13,8 +15,10 @@ const apiHeaders = {
     'Authorization': `Bearer ${openAIKey}`
 };
 
+//propmpt given to open ai to let it know what film or show is being searched and how to structure the data
 const AiPrompt = `I enjoy watching ${userFilm}, can recommend 10 films or shows that are like ${userFilm}, with a short summary. Make sure the recommended show or film is not in the data. Put a ":" after the title and before the summary all the time. Example 1. Title : summary of film`;
 
+//body for the api call data
 const AiData = {
     model: 'text-davinci-003', 
     prompt: AiPrompt,
@@ -27,6 +31,7 @@ const options = {
     body: JSON.stringify(AiData)
 };
 
+//calls teh youtuv=be data api to be able to get the id's for the videos
 function youtubeData(titelArrays) {
     for (i = 0; i < titelArrays.length; i ++){
         vidName = titelArrays[i]
@@ -36,13 +41,14 @@ function youtubeData(titelArrays) {
         })
         .then(function (data) {
             var Id = data.items[0].id.videoId
+            //sets the video id in the local storage
             localStorage.setItem(`VideoId-${[i]}`, Id)
             return data
         });
     }
 };
 
-
+// calls the open ai api to give the user film or show recomendations
 function openAiRecommendations() {
 
     fetch (openAiUrl, options)
@@ -51,24 +57,25 @@ function openAiRecommendations() {
     })
     .then(function (data) {
         var recs = data.choices[0].text;
-
+        //splits the data at the \n to make it into an array to then put in the summary area
         var list = recs.split("\n");
-
+        //takes out the unwanted elements from the list array
         var filteredList = list.filter(function(element) {
             return element !== "" && element !== ' ';
         });
-
-        extractedTitles = filteredList.map(item => {
+        //grabds the titles from the filteredList and then adds them to a new array
+        var extractedTitles = filteredList.map(item => {
             const match = item.match(/\. (.*?): (.*)/);
             return match ? match[1] : null;
           });
-
+        //loops through the extractedTitles array to set them in local stroage for later use
         for (i = 0; i < extractedTitles.length; i++) {
             localStorage.setItem(`HeaderTitle-${[i]}`, extractedTitles[i])
         };
-
+        
         youtubeData(extractedTitles)
         filmResults(filteredList)
+        //calls the iframe api in order to set the videos in the html 
         onYouTubeIframeAPIReady()
 
         return recs;
@@ -93,10 +100,10 @@ function onYouTubeIframeAPIReady() {
     });
     };
     };
-
+//generates the html code needed to show the user the results for the recommened list of shows or films
 function filmResults(array) {
     var filmParent = document.querySelector("#films");
-
+    //empties out the parent before generating a new list or recommended films or shows
     filmParent.innerHTML = ""
 
     for (i = 0; i < array.length; i++) {
@@ -124,6 +131,7 @@ function filmResults(array) {
         text.textContent = array[i];
         contentContainer.appendChild(text);
         
+        //was commented out since the watch list functionality was removed at the end can be added in the second project with other features we are looking into 
         //var button = document.createElement("button");
         //button.addEventListener("click", addWatchList);
         //button.setAttribute("class", "my-2 mx-2 text-amber-400 text-center w-14 h-36 my-2 border-8 border-amber-400 border-double bg-black")
@@ -135,6 +143,7 @@ function filmResults(array) {
     };
 };
 
+//calls the openAiRecommendations function once when the page id loaded from the main menu page in order to load up the results for the page
 if (document.URL.includes("menu.html")) {
     openAiRecommendations()
 };
