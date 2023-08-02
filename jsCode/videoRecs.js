@@ -3,7 +3,7 @@ var userFilm = localStorage.getItem("searched-film");
 const youTubeKey = "AIzaSyCi65x5y483f_VCrY8AP-ZQHf-o5e-eXcA"
 const youTubeUrl = `https://www.googleapis.com/youtube/v3/search?key=${youTubeKey}q=${userFilm}&type=video&part=snippet`
 
-const openAIKey = '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'
+const openAIKey = ''
 const openAiUrl = 'https://api.openai.com/v1/completions';
 
 const apiHeaders = {
